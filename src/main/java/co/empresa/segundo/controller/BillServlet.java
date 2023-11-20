@@ -1,6 +1,10 @@
 package co.empresa.segundo.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.empresa.segundo.dao.BillDao;
+import co.empresa.segundo.model.Bill;
+import co.empresa.test.modelo.Usuario;
 
 /**
  * Servlet implementation class BillServlet
@@ -39,7 +45,61 @@ public class BillServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getServletPath();
+		try {
+			switch (action) {
+			case "/new":
+				showNewForm(request, response);
+				break;
+			case "/insert":
+				insertBill(request, response);
+				break;
+			case "/delete":
+				eliminarBill(request, response);
+				break;
+			default:
+				listarBill(request, response);
+				break;
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			
+		}
+	}
+
+	private void listarBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void eliminarBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void insertBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		
+		Date date = request.getParameter("date");
+		int userid = request.getParameter("userid");
+		int valor = request.getParameter("valor");
+		int type = request.getParameter("type");
+		
+		Bill bill= new Bill( date, userid, valor,type);
+		billdao.insert(bill);
+
+
+		response.sendRedirect("list");
+		
+	}
+
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher dispatcher = request.getRequestDispatcher("bill.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 	/**

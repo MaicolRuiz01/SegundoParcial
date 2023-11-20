@@ -17,6 +17,15 @@ public class Bill {
     private Integer value;
     private Integer type;
     
+	public Bill(Date date_bill, Integer userId, Integer value, Integer type) {
+		super();
+		this.date_bill = date_bill;
+		this.userId = userId;
+		this.value = value;
+		this.type = type;
+	}
+    
+    
     
 
 }

@@ -81,6 +81,39 @@ public List<Bill> selectAll()throws SQLException{
 		
 		return bills;
 	}
+
+public Bill select(int id){
+	
+	Bill bill = null;
+	
+	try {
+		PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_BILL_BY_ID);
+		preparedStatement.setInt(1, id);
+		
+		ResultSet rs = conexion.query();
+		
+		while (rs.next()) {
+			
+			java.sql.Date dateSQL = rs.getDate("date"); // Obtiene la fecha como java.sql.Date
+			java.util.Date date = null;
+
+			if (dateSQL != null) {
+			    date = new java.util.Date(dateSQL.getTime()); // Convierte java.sql.Date a java.util.Date
+			}
+			int userid = rs.getInt("userid");
+			int valor = rs.getInt("valor");
+			int type = rs.getInt("type");
+			
+			bill=new Bill (id, date, userid, valor, type);
+			
+		}
+	} catch (SQLException e) {
+		// TODO: handle exception
+	}
+	return bill;
+	
+	
+}
 	
 	
     
