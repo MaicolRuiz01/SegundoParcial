@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.empresa.segundo.dao.BillDao;
+
 /**
  * Servlet implementation class BillServlet
  */
 @WebServlet("/")
 public class BillServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private BillDao billdao;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,6 +31,7 @@ public class BillServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		this.billdao = new BillDao();
 	}
 
 	/**
