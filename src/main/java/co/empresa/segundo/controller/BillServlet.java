@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.empresa.segundo.dao.BillDao;
 import co.empresa.segundo.model.Bill;
-import co.empresa.test.modelo.Usuario;
+
 
 /**
  * Servlet implementation class BillServlet
@@ -75,10 +75,15 @@ public class BillServlet extends HttpServlet {
 
 	private void eliminarBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		billdao.delete(id);
+
+		response.sendRedirect("list");
 		
 	}
 
-	private void insertBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	private void insertBill(HttpServletRequest request, HttpServletResponse response)throws ServletException, ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		
