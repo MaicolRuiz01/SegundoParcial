@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bill {
+	
+	
 	private Integer id;
     private Date date_bill;
     private Integer userId;
